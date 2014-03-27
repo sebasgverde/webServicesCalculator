@@ -24,31 +24,34 @@ public class WsCalcClient {
     
     
     Wscalc1_Service calc1Serv = null;
+    CalcRestClient calc2 = null;
     
     public WsCalcClient()
     {
         try {
             calc1Serv = new Wscalc1_Service(new URL(uri));
             calc1 = calc1Serv.getWscalc1Port();
+            
+            calc2 = new CalcRestClient();
         } catch (MalformedURLException ex) {  
             Logger.getLogger(WsCalcClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public int sumar(int a, int b) {
-        return calc1.sumar(a, b);
+    public String sumar(String a, String b) {
+        return Integer.toString(calc1.sumar(Integer.parseInt(a), Integer.parseInt(b)));
     }
 
-    public int restar(int a, int b) {
-        return a - b;
+    public String restar(String a, String b) {
+        return calc2.getDatos("-", a, b);
     }
 
-    public int multiplicar(int a, int b) {
-        return calc1.multiplicar(a, b);
+    public String multiplicar(String a, String b) {
+        return Integer.toString(calc1.multiplicar(Integer.parseInt(a), Integer.parseInt(b)));
     }
 
-    public int dividir(int a, int b) {
-        return a / b;
+    public String dividir(String a, String b) {
+        return calc2.getDatos("/", a, b);
     }    
     
     

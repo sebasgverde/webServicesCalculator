@@ -37,9 +37,9 @@ public class CalcServlet extends HttpServlet {
         WsCalcClient calcProxy = new WsCalcClient();
         
         String op = request.getParameter("op");
-        int a = Integer.parseInt(request.getParameter("p1"));
-        int b = Integer.parseInt(request.getParameter("p2"));
-        int result = 0;
+        String a = request.getParameter("p1");
+        String b = request.getParameter("p2");
+        String result = "0";
         
         if (op.equals("-")) {
             result = calcProxy.restar(a, b);
