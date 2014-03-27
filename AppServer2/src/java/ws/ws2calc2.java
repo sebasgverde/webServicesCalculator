@@ -36,7 +36,7 @@ public class ws2calc2 {
     @Produces("application/json")
     public String getDatos(@QueryParam("op") String op, @QueryParam("p1") int p1, @QueryParam("p2") int p2) {        
 
-        System.out.println(p1+ " "+op+" " + p2);
+        //System.out.println(p1+ " "+op+" " + p2);
         //return p1+ " "+op+" " + p2 + " = "+  calc.operacion(p1, p2,op);
         return "{res: " + calc.operacion(p1, p2,op) + "}";
     }
