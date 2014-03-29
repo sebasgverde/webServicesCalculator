@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="dividir" type="tns:dividir"/>
+
+<xs:element name="dividirResponse" type="tns:dividirResponse"/>
+
+<xs:element name="multiplicar" type="tns:multiplicar"/>
+
+<xs:element name="multiplicarResponse" type="tns:multiplicarResponse"/>
+
+<xs:element name="restar" type="tns:restar"/>
+
+<xs:element name="restarResponse" type="tns:restarResponse"/>
+
+<xs:element name="sumar" type="tns:sumar"/>
+
+<xs:element name="sumarResponse" type="tns:sumarResponse"/>
+
+<xs:complexType name="dividir">
+<xs:sequence>
+<xs:element name="a" type="xs:int"/>
+<xs:element name="b" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dividirResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="restar">
+<xs:sequence>
+<xs:element name="a" type="xs:int"/>
+<xs:element name="b" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="restarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="multiplicar">
+<xs:sequence>
+<xs:element name="a" type="xs:int"/>
+<xs:element name="b" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="multiplicarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sumar">
+<xs:sequence>
+<xs:element name="a" type="xs:int"/>
+<xs:element name="b" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sumarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

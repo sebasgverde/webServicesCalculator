@@ -33,7 +33,7 @@ public class CalcRestClient {
         webTarget = client.target(uri);
     }
 
-    public String getDatos(String op, String p1, String p2) throws ClientErrorException {
+    public String getDatos(String op, String p2, String p1) throws ClientErrorException {
         WebTarget resource = webTarget;
         if (op != null) {
             resource = resource.queryParam("op", op);
