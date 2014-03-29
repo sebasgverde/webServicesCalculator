@@ -12,11 +12,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+ 
 /**
  *
  * @author sebastian
  */
-public class WsCalcClient {
+public class CalcProxy {
     String uri ;//= "http://localhost:8080/AppServer1/wscalc1";
     String uriRest;// = "http://localhost:8080/AppServer2/webresources/ws2calc2";
     
@@ -24,7 +25,7 @@ public class WsCalcClient {
     Wscalc1_Service calc1Serv = null;
     CalcRestClient calc2 = null;
     
-    public WsCalcClient(String [] urls)
+    public CalcProxy(String [] urls)
     {
         uri = urls[0];
         uriRest = urls[1];
@@ -34,7 +35,7 @@ public class WsCalcClient {
             
             calc2 = new CalcRestClient(uriRest);
         } catch (MalformedURLException ex) {  
-            Logger.getLogger(WsCalcClient.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalcProxy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -52,7 +53,5 @@ public class WsCalcClient {
 
     public String dividir(String a, String b) {
         return calc2.getDatos("/", a, b);
-    }    
-    
-    
+    }        
 }

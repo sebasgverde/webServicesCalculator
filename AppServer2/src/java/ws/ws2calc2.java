@@ -38,6 +38,6 @@ public class ws2calc2 {
 
         //System.out.println(p1+ " "+op+" " + p2);
         //return p1+ " "+op+" " + p2 + " = "+  calc.operacion(p1, p2,op);
-        return "{res: " + calc.operacion(p1, p2,op) + "}";
+        return "{\"res\": " + calc.operacion(p1, p2,op) + "}";
     }
 }

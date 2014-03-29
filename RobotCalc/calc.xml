@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<webservices>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><webservices>
 	<webservice>
 		<url>http://server1:port/AppServer1/wscalc1</url>
 		<method>sumar</method>
@@ -16,16 +15,16 @@
 			<p1>10</p1>
 			<p2>20</p2>
 		</params>
-		<result>-10</result>
+		<result>{"res": -10}</result>
 	</webservice>
 	<webservice>
 		<url>http://server2:port/AppServer2/ws2calc2</url>
 		<method>sumar</method>
 		<params>
-			<p1>30</p1>
+			<p1>300</p1>
 			<p2>20</p2>
 		</params>
-		<result>-10</result>
+		<result>320</result>
 	</webservice>
 	<webservice>
 		<url>http://server2:port/AppServer2/ws2calc2</url>
@@ -34,15 +33,15 @@
 			<p1>90</p1>
 			<p2>5</p2>
 		</params>
-		<result>-10</result>
+		<result>{"res": 18}</result>
 	</webservice>	
 	<webservice>
 		<url>http://server1:port/AppServer1/wscalc1</url>
 		<method>multiplicar</method>
 		<params>
-			<p1>10</p1>
+			<p1>20</p1>
 			<p2>20</p2>
 		</params>
-		<result>30</result>
+		<result>400</result>
 	</webservice>	
 </webservices>

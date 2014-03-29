@@ -37,7 +37,7 @@ public class CalcServlet extends HttpServlet {
         XmlParser parser = new XmlParser();
         String [] urls = parser.leerUrls();
         
-        WsCalcClient calcProxy = new WsCalcClient(urls);
+        CalcProxy calcProxy = new CalcProxy(urls);
         
         String op = request.getParameter("op");
         String a = request.getParameter("p1");

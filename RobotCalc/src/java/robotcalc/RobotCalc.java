@@ -6,7 +6,7 @@
 
 package robotcalc;
 
-import web.WsCalcClient;
+import web.CalcProxy;
 import web.XmlParser;
 
 /**
@@ -15,18 +15,15 @@ import web.XmlParser;
  */
 public class RobotCalc {
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    public static void ComunicarseWs(String [] operaciones, String [] urls)
+    public static String[] ComunicarseWs(String [] operaciones, String [] urls)
     {
-        WsCalcClient calcProxy = new WsCalcClient(urls);
+        CalcProxy calcProxy = new CalcProxy(urls);
         
         String op;
         String a;
         String b;
         String result = "0";
+        String [] resultados = new String[operaciones.length];
         
         for(int i = 0; i < operaciones.length; i++)
         {
@@ -45,8 +42,9 @@ public class RobotCalc {
                 result = calcProxy.sumar(a, b);
             }
             System.out.println(a+ " "+op+" " + b + " = "+  result);   
-            
+            resultados[i] = result;          
         }  
+        return resultados;
     }
     
     public static void main(String[] args) {
@@ -57,7 +55,9 @@ public class RobotCalc {
         XmlParser parser = new XmlParser();
         String [] urls = parser.leerUrls();  
         
-        ComunicarseWs(operaciones, urls);
+        String [] resultados = ComunicarseWs(operaciones, urls);
+        
+        parsOper.setResultado(resultados);
         
     }
 }
