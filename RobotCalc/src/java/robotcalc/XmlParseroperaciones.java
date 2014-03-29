@@ -15,51 +15,47 @@ import org.xml.sax.SAXParseException;
 
 public class XmlParseroperaciones{
 
-    private static int numeroSensores;
+    private static int numeroWebServ;
+    String operacion = "";
     
-    public void parsearOperaciones(){
+    public String [] parsearOperaciones(){
     try {
 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse (new File("../calc.xml"));
+            Document doc = docBuilder.parse (new File("calc.xml"));
             
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
             
-            NodeList listaSensores = doc.getElementsByTagName("sensor");
-            numeroSensores = listaSensores.getLength();
-            System.out.println("Total no of sensors : " + numeroSensores);
+            NodeList listaWebServices = doc.getElementsByTagName("webservice");
+            numeroWebServ = listaWebServices.getLength();
+            //System.out.println("Total no of ws : " + numeroWebServ);
 
-            for(int s=0; s<listaSensores.getLength() ; s++){
-
-
-                Node sensorNodo = listaSensores.item(s);
-                if(sensorNodo.getNodeType() == Node.ELEMENT_NODE){
+            for(int s=0; s<listaWebServices.getLength() ; s++){
 
 
-                    Element elementoSensor = (Element)sensorNodo;
+                Node wsNodo = listaWebServices.item(s);
+                if(wsNodo.getNodeType() == Node.ELEMENT_NODE){
 
-                    //-------
-                    NodeList listaNombre = elementoSensor.getElementsByTagName("nombre");
-                    Element elementNombre = (Element)listaNombre.item(0);
-
-                    NodeList textoNombre = elementNombre.getChildNodes();
-                    String nombre = ((Node)textoNombre.item(0)).getNodeValue().trim();
-                    System.out.println("nombre sensor : " + 
-                    		nombre);
+                    Element elementoMetodo = (Element)wsNodo;
+                            
+                    operacion += valorNodo("method", elementoMetodo) + "&";
 
                     //-------
-                    NodeList listaPosArreglo = elementoSensor.getElementsByTagName("posArreglo");
-                    Element elementPosArreg = (Element)listaPosArreglo.item(0);
-
-                    NodeList textoPosArreg = elementPosArreg.getChildNodes();
-                    int pos = Integer.parseInt(((Node)textoPosArreg.item(0)).getNodeValue().trim());
-                    System.out.println("pos en arreglo : " + 
-                    		pos);
+                    NodeList listaParams = elementoMetodo.getElementsByTagName("params");
                     
+                    Node paramsNodo = listaParams.item(0);
+                    if(paramsNodo.getNodeType() == Node.ELEMENT_NODE)
+                    {
 
+                        Element elementoParam = (Element)paramsNodo;
+                        operacion += valorNodo("p1", elementoParam)+ "&";
+                        operacion += valorNodo("p2", elementoParam)+ "#";
+
+                    }
+                    
                 }//end of if clause
             }//end of for loop with s var
 
@@ -77,6 +73,19 @@ public class XmlParseroperaciones{
         t.printStackTrace ();
         }
 
-
+        return operacion.split("#");
     }//end of main
+    
+    public String valorNodo(String tag, Element elemento)
+    {
+        //-------
+        NodeList listaElem = elemento.getElementsByTagName(tag);
+        Element element = (Element)listaElem.item(0);
+
+        NodeList textoElem = element.getChildNodes();
+        String nombre = ((Node)textoElem.item(0)).getNodeValue().trim();
+        //System.out.println("nombre : " + nombre); 
+        
+        return nombre;
+    }
 }
