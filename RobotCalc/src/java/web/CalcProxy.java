@@ -8,10 +8,14 @@ package web;
 
 import cliente.Wscalc1;
 import cliente.Wscalc1_Service;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
  
 /**
  *
@@ -25,10 +29,20 @@ public class CalcProxy {
     Wscalc1_Service calc1Serv = null;
     CalcRestClient calc2 = null;
     
+    public String ParsearJson(String jsonString)
+    {
+        JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
+        JsonObject jsonObject = jsonReader.readObject();
+        jsonReader.close();            
+
+        return jsonObject.getString("res");        
+    }
+    
     public CalcProxy(String [] urls)
     {
         uri = urls[0];
-        uriRest = urls[1];
+        uriRest = urls[1];        
+ 
         try {
             calc1Serv = new Wscalc1_Service(new URL(uri));
             calc1 = calc1Serv.getWscalc1Port();
@@ -44,7 +58,7 @@ public class CalcProxy {
     }
 
     public String restar(String a, String b) {
-        return calc2.getDatos("-", a, b);
+        return ParsearJson(calc2.getDatos("-", a, b));
     }
 
     public String multiplicar(String a, String b) {
@@ -52,6 +66,6 @@ public class CalcProxy {
     }
 
     public String dividir(String a, String b) {
-        return calc2.getDatos("/", a, b);
+        return ParsearJson(calc2.getDatos("/", a, b));
     }        
 }
