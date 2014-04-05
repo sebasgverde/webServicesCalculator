@@ -4,17 +4,17 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/AppServer1/wscalc1?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="sumar">
-<part name="parameters" element="tns:sumar"/>
-</message>
-<message name="sumarResponse">
-<part name="parameters" element="tns:sumarResponse"/>
-</message>
 <message name="restar">
 <part name="parameters" element="tns:restar"/>
 </message>
 <message name="restarResponse">
 <part name="parameters" element="tns:restarResponse"/>
+</message>
+<message name="sumar">
+<part name="parameters" element="tns:sumar"/>
+</message>
+<message name="sumarResponse">
+<part name="parameters" element="tns:sumarResponse"/>
 </message>
 <message name="multiplicar">
 <part name="parameters" element="tns:multiplicar"/>
@@ -29,13 +29,13 @@
 <part name="parameters" element="tns:dividirResponse"/>
 </message>
 <portType name="wscalc1">
-<operation name="sumar">
-<input wsam:Action="http://ws/wscalc1/sumarRequest" message="tns:sumar"/>
-<output wsam:Action="http://ws/wscalc1/sumarResponse" message="tns:sumarResponse"/>
-</operation>
 <operation name="restar">
 <input wsam:Action="http://ws/wscalc1/restarRequest" message="tns:restar"/>
 <output wsam:Action="http://ws/wscalc1/restarResponse" message="tns:restarResponse"/>
+</operation>
+<operation name="sumar">
+<input wsam:Action="http://ws/wscalc1/sumarRequest" message="tns:sumar"/>
+<output wsam:Action="http://ws/wscalc1/sumarResponse" message="tns:sumarResponse"/>
 </operation>
 <operation name="multiplicar">
 <input wsam:Action="http://ws/wscalc1/multiplicarRequest" message="tns:multiplicar"/>
@@ -48,7 +48,7 @@
 </portType>
 <binding name="wscalc1PortBinding" type="tns:wscalc1">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="sumar">
+<operation name="restar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -57,7 +57,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="restar">
+<operation name="sumar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

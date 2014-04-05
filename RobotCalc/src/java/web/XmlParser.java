@@ -24,7 +24,7 @@ public class XmlParser{
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
                             
-            Document doc = docBuilder.parse (new File("calcserver.xml"));
+            Document doc = docBuilder.parse (new File("sgarci18Calcserver.xml"));
             
 
             // normalize text representation
